@@ -13,6 +13,7 @@ public class StraightInsertSort {
             array[j] = k;
         }
     }
+
     //冒泡排序
     public static void bubbleSort(int[] array){
         if(array.length == 0 || array.length == 1)
@@ -28,7 +29,29 @@ public class StraightInsertSort {
         }
     }
 
-    //归并排序
+    //快速排序
+    public static void quickSort(int[] array, int left, int right){
+        if(left >= right)
+            return;
+        int index = oneQuickSort(array,left, right);
+        quickSort(array, left, index - 1);
+        quickSort(array, index + 1, right);
+    }
+    public static int oneQuickSort(int[] array, int left, int right){
+        int i = left, j = right;
+        int key = array[right];
+        while( i < j){
+            while( i < j && array[i] <= key)
+                i++;
+            array[j] = array[i];
+            while( i < j && array[j] >= key)
+                j--;
+            array[i] = array[j];
+        }
+        array[i] = key;
+        return i;
+    }
+
 
     //归并排序
     public static void merge(int[] array, int left, int mid, int right){
@@ -72,7 +95,8 @@ public class StraightInsertSort {
         int [] array = {2,1,40,3,4,0,10};
         //insertSort(array);
         //bubbleSort(array);
-        mergeSort(array,0, array.length - 1);
+        //mergeSort(array,0, array.length - 1);
+        quickSort(array,0,array.length - 1);
 
         printArray(array);
     }
