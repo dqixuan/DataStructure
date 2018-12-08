@@ -81,6 +81,24 @@ public class StraightInsertSort {
         }
     }
 
+    //堆排序
+
+
+    //希尔排序
+    public static void shellSort(int[] array){
+        int len = array.length;
+        for(int i = len/2; i > 0; i /= 2){
+            for(int j = i; j < len; j ++){
+                int key = array[j];
+                int k = j;
+                for(; k > i - 1 && key < array[k - i]; k -= i){
+                    array[k] = array[k - i];
+                }
+                array[k] = key;
+            }
+        }
+    }
+
     //打印数组
     public static void printArray(int [] array){
         if(array == null)
@@ -96,7 +114,8 @@ public class StraightInsertSort {
         //insertSort(array);
         //bubbleSort(array);
         //mergeSort(array,0, array.length - 1);
-        quickSort(array,0,array.length - 1);
+        //quickSort(array,0,array.length - 1);
+        shellSort(array);
 
         printArray(array);
     }
