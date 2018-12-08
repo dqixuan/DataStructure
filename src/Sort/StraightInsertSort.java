@@ -1,5 +1,7 @@
 package Sort;
 
+import java.util.concurrent.ThreadPoolExecutor;
+
 public class StraightInsertSort {
     //直接插入排序
     public static void insertSort(int[] array){
@@ -82,7 +84,36 @@ public class StraightInsertSort {
     }
 
     //堆排序
+    public static void heapSort(int[] array){
+        int len = array.length;
+        if(len == 0  || len == 1)
+            return;
+        //初始化堆
+        for(int i = len /2; i >= 0; i--)
+            headAdjust(array,i, len - 1);
 
+        //堆排序
+        for(int i = len - 1; i > 0; i--){
+            int temp = array[0];
+            array[0] = array[i];
+            array[i] = temp;
+            headAdjust(array,0, i);
+        }
+    }
+    public static void headAdjust(int[] array, int parent, int length){
+        int temp = array[parent];
+        int child = parent * 2 + 1;
+        while(child < length){
+            if(child + 1 < length && array[child] < array[child + 1])
+                child++;
+            if(temp >= array[child])
+                break;
+            array[parent] = array[child];
+            parent = child;
+            child = 2 * child + 1;
+        }
+        array[parent] = temp;
+    }
 
     //希尔排序
     public static void shellSort(int[] array){
@@ -115,7 +146,8 @@ public class StraightInsertSort {
         //bubbleSort(array);
         //mergeSort(array,0, array.length - 1);
         //quickSort(array,0,array.length - 1);
-        shellSort(array);
+        //shellSort(array);
+        heapSort(array);
 
         printArray(array);
     }
