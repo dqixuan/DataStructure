@@ -13,6 +13,7 @@ public class StraightInsertSort {
             array[j] = k;
         }
     }
+
     //冒泡排序
     public static void bubbleSort(int[] array){
         if(array.length == 0 || array.length == 1)
@@ -28,6 +29,57 @@ public class StraightInsertSort {
         }
     }
 
+    //快速排序
+    public static void quickSort(int[] array, int left, int right){
+        if(left >= right)
+            return;
+        int index = oneQuickSort(array,left, right);
+        quickSort(array, left, index - 1);
+        quickSort(array, index + 1, right);
+    }
+    public static int oneQuickSort(int[] array, int left, int right){
+        int i = left, j = right;
+        int key = array[right];
+        while( i < j){
+            while( i < j && array[i] <= key)
+                i++;
+            array[j] = array[i];
+            while( i < j && array[j] >= key)
+                j--;
+            array[i] = array[j];
+        }
+        array[i] = key;
+        return i;
+    }
+
+
+    //归并排序
+    public static void merge(int[] array, int left, int mid, int right){
+        int i = left;
+        int j = mid + 1;
+        int[] temp = new int[right + 1 - left];
+        int k = 0;
+        while( i <= mid && j <= right){
+            if(array[i] >= array[j])
+                temp[k++] = array[j++];
+            else
+                temp[k++] = array[i++];
+        }
+        while(i <= mid)
+            temp[k++] = array[i++];
+        while(j <= right)
+            temp[k++] = array[j++];
+        for(k = 0; k < temp.length; ++k)
+            array[k+left] = temp[k];
+    }
+    public static void mergeSort(int[] array, int left, int right){
+        if(left < right){
+            int mid = ( right + left) / 2;
+            mergeSort(array, left, mid);
+            mergeSort(array,mid+ 1, right);
+            merge(array,left,mid,right);
+        }
+    }
 
     //打印数组
     public static void printArray(int [] array){
@@ -38,12 +90,14 @@ public class StraightInsertSort {
         }
         System.out.println();
     }
-
     //test
     public static void main(String[] args){
         int [] array = {2,1,40,3,4,0,10};
         //insertSort(array);
-        bubbleSort(array);
+        //bubbleSort(array);
+        //mergeSort(array,0, array.length - 1);
+        quickSort(array,0,array.length - 1);
+
         printArray(array);
     }
 }
