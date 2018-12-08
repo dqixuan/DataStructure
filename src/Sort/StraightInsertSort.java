@@ -28,8 +28,7 @@ public class StraightInsertSort {
         }
     }
 
-    //归并排序
-    //public static void merge(int)
+
     //打印数组
     public static void printArray(int [] array){
         if(array == null)
@@ -39,6 +38,7 @@ public class StraightInsertSort {
         }
         System.out.println();
     }
+
     //test
     public static void main(String[] args){
         int [] array = {2,1,40,3,4,0,10};
