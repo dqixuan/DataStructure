@@ -1,12 +1,12 @@
 package PatternOfDesign;
 
 /**
- * 简单工厂模式
+ * 简单工厂模式（最好是面向接口编程）
  * 避免了客户端直接生成产品对象
- * 不利于扩展，添加新的产品，需要在工厂中修改
+ * 不利于扩展，添加新的产品，需要在工厂中修改，违反了开闭原则
  */
 //汽车抽象类
-abstract class Car{
+abstract class Car{  //instead of interface
     private String name;
 
     public abstract void driver();
@@ -34,7 +34,7 @@ class Bmw extends Car{
 
 
 class Driver{
-    public static Car getCar(String car){
+    public static Car getCar(String car){  //简单工厂模式
         Car carr = null;
         if(car.equalsIgnoreCase("benz"))
             carr =  new Benz();
