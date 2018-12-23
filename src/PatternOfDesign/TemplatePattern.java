@@ -1,5 +1,10 @@
 package PatternOfDesign;
 
+/**
+ * Template method pattern
+ * 优点：封装不变部分，扩展可变部分；提取公共部分代码，利于维护；行为由父类控制，由子类实现
+ * 缺点：子类执行的结果，影响父类
+ */
 
 //抽象模板类
 abstract class HummerModel{
